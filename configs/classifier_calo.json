@@ -1,0 +1,238 @@
+{
+    "name": "classifier_calo",
+    "learningrate": 0.00001,
+    "path_to_train": "data/train_data.root",
+    "path_to_valid": "data/val_data.root",
+    "path_to_test": "data/test_data.root",
+    "num_workers": 8,
+    "batchsize": 400,
+    "reduce_dataset": 1.0,
+    "train vetex finder": true,
+    "train classifier": true,
+    "nbins" : 20,
+    "load pre-trained vertex finder": false,
+    "vertex finding loss type": "edge loss",
+    "loss types": [
+        "classification loss",
+        "node loss",
+        "edge bce",
+        "edge f1"
+    ],
+    "loss weights": {
+        "classification loss": 1.0,
+        "node loss": 1.0,
+        "edge bce": 1.0,
+        "edge f1": 1.0
+    },
+    "track initializer": {
+        "inputsize": 10,
+        "outputsize": 90,
+        "layers": [
+            60,
+            60
+        ]
+    },
+    "lepton initializer": {
+        "inputsize": 30,
+        "outputsize": 90,
+        "layers": [
+            80,
+            80
+        ]
+    },
+    "cell initializer": {
+        "inputsize": 9,
+        "outputsize": 90,
+        "layers": [
+            60,
+            60
+        ]
+    },
+    "cell embeding model" : {
+        "inputsize": 90,
+        "outputsize": 90,
+        "layers": [
+            128,
+            128
+        ],
+        "inputs" : [
+            "cell_rep"
+        ]
+    },
+    "vertex finder": {
+        "node embedding model": {
+            "model type": "deepset",
+            "inputsize": 105,
+            "outputsize": 90,
+            "layers": [
+                256,
+                256,
+                256
+            ],
+            "inputs" : [
+                "node features",
+                "node_type_embedding",
+                "common variables"
+            ]
+        },
+        "output model": {
+            "model type": "set2graph",
+            "edge_inputsize": 480,
+            "node_inputsize": 285,
+            "edge classifer layers": [
+                256,
+                100
+            ],
+            "node classifer layers": [
+                120,
+                100
+            ],
+            "n classes": 5
+        }
+    },
+    "classifier config": {
+        "number of blocks": 2,
+        "gn sizes": [
+            90,
+            200,
+            100
+        ],
+        "classifier layers": [
+            105,
+            100,
+            50,
+            10,
+            4
+        ]
+    },
+    "var_transformations": {
+        "jet_score": {
+            "mean": 2.2222304344177246,
+            "std": 4.494979381561279
+        },
+        "jet_pt": {
+            "mean": 74189.609375,
+            "std": 52077.625
+        },
+        "jet_e": {
+            "mean": 139823.703125,
+            "std": 131841.78125
+        },
+        "trk_extrap_node_d0": {
+            "mean": -0.058506932109594345,
+            "std": 3.62680721282959
+        },
+        "trk_extrap_node_z0": {
+            "mean": 0.02471957728266716,
+            "std": 63.333457946777344
+        },
+        "trk_extrap_node_phi0": {
+            "mean": -0.004280449822545052,
+            "std": 1.812947154045105
+        },
+        "trk_extrap_node_theta": {
+            "mean": 1.571333408355713,
+            "std": 0.8760257959365845
+        },
+        "trk_extrap_node_qoverp": {
+            "mean": 1.149632953456603e-05,
+            "std": 0.0007268523331731558
+        },
+        "lepton_ptRel": {
+            "mean": 621.2014770507812,
+            "std": 3127.9365234375
+        },
+        "lepton_d0": {
+            "mean": -0.009819157421588898,
+            "std": 1.402601718902588
+        },
+        "lepton_z0": {
+            "mean": -0.03886766731739044,
+            "std": 43.34782028198242
+        },
+        "lepton_track_phi": {
+            "mean": 0.002769473707303405,
+            "std": 1.8088849782943726
+        },
+        "lepton_track_theta": {
+            "mean": 1.5681037902832031,
+            "std": 0.8620480895042419
+        },
+        "lepton_track_qoverp": {
+            "mean": 4.0891791286412627e-07,
+            "std": 0.0002412907633697614
+        },
+        "lepton_f1": {
+            "mean": 0.3102729916572571,
+            "std": 0.1360417902469635
+        },
+        "lepton_f3": {
+            "mean": 0.025993790477514267,
+            "std": 0.06317656487226486
+        },
+        "lepton_f3core": {
+            "mean": 0.039242055267095566,
+            "std": 0.09982262551784515
+        },
+        "lepton_weta1": {
+            "mean": 0.6212385892868042,
+            "std": 0.09589426964521408
+        },
+        "lepton_weta2": {
+            "mean": 0.012270105071365833,
+            "std": 0.003326419275254011
+        },
+        "lepton_fracs1": {
+            "mean": 0.3865828514099121,
+            "std": 0.2557353675365448
+        },
+        "lepton_wtots1": {
+            "mean": 3.475803852081299,
+            "std": 2.862304925918579
+        },
+        "lepton_e277": {
+            "mean": 29019.10546875,
+            "std": 43094.55078125
+        },
+        "lepton_Reta": {
+            "mean": 0.8894270062446594,
+            "std": 95.6793212890625
+        },
+        "lepton_Rphi": {
+            "mean": -30.798873901367188,
+            "std": 32932.9375
+        },
+        "lepton_Eratio": {
+            "mean": 0.5600531697273254,
+            "std": 0.32399797439575195
+        },
+        "lepton_Rhad": {
+            "mean": 0.6291805505752563,
+            "std": 1.3874289989471436
+        },
+        "lepton_Rhad1": {
+            "mean": 0.3405283987522125,
+            "std": 0.7307900786399841
+        },
+        "lepton_deltaEta1": {
+            "mean": -0.012815691530704498,
+            "std": 3.5783398151397705
+        },
+        "lepton_deltaPhi1": {
+            "mean": -0.024317681789398193,
+            "std": 0.10200490057468414
+        },
+        "lepton_deltaPhi2": {
+            "mean": -0.029407760128378868,
+            "std": 0.10419628024101257
+        }
+    },
+    "scale_factor": {
+        "trk_extrap_node_d0": 10.0,
+        "trk_extrap_node_z0": 10.0,
+        "trk_extrap_node_qoverp": 1000.0,
+        "lepton_d0": 10.0,
+        "lepton_z0": 10.0,
+        "lepton_track_qoverp": 1000.0
+    }
+}

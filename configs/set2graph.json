@@ -1,0 +1,167 @@
+{
+    "name": "set2graph",
+    "learningrate": 0.0001,
+    "path_to_train": "../data/training_with_taus.root",
+    "path_to_valid": "../data/validation.root",
+    "num_workers": 4,
+    "batchsize": 1000,
+    "reduce_dataset": 1.0,
+    "train vetex finder": true,
+    "load pre-trained vertex finder": false,
+    "train classifier": false,
+    "vertex finding loss type": "edge loss",
+    "loss types": [
+        "node loss",
+        "edge bce",
+        "edge f1"
+    ],
+    "loss weights": {
+        "loss": 1.0,
+        "node loss": 1.0,
+        "edge bce": 1.0,
+        "edge f1": 1.0
+    },
+    "track initializer": {
+        "inputsize": 9,
+        "outputsize": 90,
+        "layers": [
+            60,
+            60
+        ]
+    },
+    "lepton initializer": {
+        "inputsize": 9,
+        "outputsize": 90,
+        "layers": [
+            60,
+            60
+        ]
+    },
+    "vertex finder": {
+        "node embedding model": {
+            "model type": "deepset",
+            "inputsize": 104,
+            "outputsize": 90,
+            "layers": [
+                256,
+                256,
+                256
+            ]
+        },
+        "output model": {
+            "model type": "set2graph",
+            "edge_inputsize": 478,
+            "node_inputsize": 284,
+            "edge classifer layers": [
+                256,
+                100
+            ],
+            "node classifer layers": [
+                120,
+                100
+            ],
+            "n classes": 5
+        }
+    },
+    "classifier config": {
+        "number of blocks": 2,
+        "gn sizes": [
+            90,
+            200,
+            100
+        ],
+        "classifier layers": [
+            104,
+            100,
+            50,
+            10,
+            3
+        ]
+    },
+    "var_transformations": {
+        "jet_pt": {
+            "mean": 68853.71,
+            "std": 39744.477
+        },
+        "jet_eta": {
+            "mean": 0.00032605126,
+            "std": 1.1444457
+        },
+        "jet_phi": {
+            "mean": 0.00060285133,
+            "std": 1.8132502
+        },
+        "jet_e": {
+            "mean": 122481.664,
+            "std": 94666.836
+        },
+        "trk_node_d0": {
+            "mean": -0.033140287,
+            "std": 1.942943
+        },
+        "trk_node_z0": {
+            "mean": -0.0055393814,
+            "std": 4.570615
+        },
+        "trk_node_phi0": {
+            "mean": -0.0043641343,
+            "std": 1.8147552
+        },
+        "trk_node_theta": {
+            "mean": 1.5717992,
+            "std": 0.85370046
+        },
+        "trk_node_qoverp": {
+            "mean": 0.008293424,
+            "std": 0.49656865
+        },
+        "lepton_pt": {
+            "mean": 15239.758,
+            "std": 253763.86
+        },
+        "lepton_eta": {
+            "mean": 0.003900394,
+            "std": 1.126449
+        },
+        "lepton_phi": {
+            "mean": 0.0005068718,
+            "std": 1.8120519
+        },
+        "lepton_e": {
+            "mean": 26824.002,
+            "std": 502144.56
+        },
+        "lepton_type": {
+            "mean": 11.268000775584193,
+            "std": 0.6813054641309265
+        },
+        "lepton_d0": {
+            "mean": -0.002085782,
+            "std": 1.2319798
+        },
+        "lepton_z0": {
+            "mean": -0.00018499367,
+            "std": 4.570615
+        },
+        "lepton_track_phi": {
+            "mean": 0.00053692516,
+            "std": 1.812049
+        },
+        "lepton_track_theta": {
+            "mean": 1.5678734,
+            "std": 0.83328396
+        },
+        "lepton_track_qoverp": {
+            "mean": 0.00015327163,
+            "std": 0.20644979
+        }
+    },
+    "scale_factor": {
+        "trk_node_d0": 10.0,
+        "trk_node_z0": 10.0,
+        "trk_node_qoverp": 1000.0,
+        "lepton_d0": 10.0,
+        "lepton_z0": 10.0,
+        "lepton_track_qoverp": 1000.0
+    }
+}
